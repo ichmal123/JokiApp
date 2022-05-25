@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1069003929606",
+    "project_id": "jokiapps-672e9",
+    "storage_bucket": "jokiapps-672e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069003929606:android:8460adcb8d88bb36c6eb87",
+        "android_client_info": {
+          "package_name": "com.ichmal.jokiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069003929606-ftgffsgun8ogn4ivonag4u03398he75b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ichmal.jokiapp",
+            "certificate_hash": "7184292c613d37d8797a4a1e81b86856ba840f8f"
+          }
+        },
+        {
+          "client_id": "1069003929606-u2bndkotdeltkq1kfjdgcagg19bhr8ai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY3RQmTVUj26fT0tmNzTpYKce2X1glQMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069003929606-u2bndkotdeltkq1kfjdgcagg19bhr8ai.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
