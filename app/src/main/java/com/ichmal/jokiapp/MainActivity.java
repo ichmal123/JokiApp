@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void profileMenu(View v){
-        Toast.makeText(getApplicationContext(), "Mohon maaf, sistem sedang dalam pengembangan.", Toast.LENGTH_LONG).show();
+        Intent profile = new Intent(getApplicationContext(), ProfileActivity.class);
+        startActivity(profile);
     }
     public void historyMenu(View v){
         Toast.makeText(getApplicationContext(), "Mohon maaf, sistem sedang dalam pengembangan.", Toast.LENGTH_LONG).show();
