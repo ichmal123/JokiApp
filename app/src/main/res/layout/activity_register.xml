@@ -92,7 +92,7 @@
         <FrameLayout
             android:id="@+id/sv"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="450dp"
             android:layout_centerInParent="true">
 
             <RelativeLayout
@@ -201,6 +201,27 @@
 
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txtPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp">
+
+                            <EditText
+                                android:id="@+id/reg_phone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/white"
+                                android:drawableStart="@drawable/phone"
+                                android:hint="     Masukkan No Telepon"
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:maxLines="1"
+                                android:textSize="16sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
 
                     <RelativeLayout
@@ -208,7 +229,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginStart="30dp"
-                        android:layout_marginTop="100dp"
+                        android:layout_marginTop="130dp"
                         android:layout_marginEnd="30dp">
 
                         <com.google.android.material.button.MaterialButton
@@ -216,7 +237,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|bottom"
-                            android:layout_margin="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
                             android:text="Register"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"

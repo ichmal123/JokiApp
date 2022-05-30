@@ -103,7 +103,10 @@
                     android:id="@+id/cv"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="3dp"
                     app:strokeColor="@color/colorPrimaryDark"
@@ -174,13 +177,31 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="end|bottom"
-                            android:layout_margin="8dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginBottom="8dp"
                             android:text="Login"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"
                             android:theme="@style/Theme.MaterialComponents.Light"
                             app:backgroundTint="@color/colorPrimaryDark"
                             app:cornerRadius="50dp" />
+
+                        <ImageView
+                            android:id="@+id/google"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_below="@id/masuk"
+                            android:layout_centerHorizontal="true"
+                            android:src="@drawable/google_logo" />
+
+                        <com.facebook.login.widget.LoginButton
+                            android:id="@+id/login_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/google"
+                            android:layout_centerHorizontal="true"/>
 
                     </RelativeLayout>
 
