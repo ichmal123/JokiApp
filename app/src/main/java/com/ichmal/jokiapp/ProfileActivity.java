@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -33,12 +34,14 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private TextView txtName, txtEmail, txtPhone;
     private FirebaseUser user;
-    private Button btnReset;
+    private Button btnReset,btnSave;
     private ImageView imgProfile;
     private StorageReference mStorageRef;
     private FirebaseAuth fAuth;
@@ -51,10 +54,11 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        txtName = findViewById(R.id.lblName);
-        txtEmail = findViewById(R.id.lblEmail);
-        txtPhone = findViewById(R.id.lblPhone);
+        txtName = findViewById(R.id.editName);
+        txtEmail = findViewById(R.id.editEmail);
+        txtPhone = findViewById(R.id.editPhone);
         imgProfile = findViewById(R.id.picture);
+        btnSave = findViewById(R.id.btnSave);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         fAuth = FirebaseAuth.getInstance();
@@ -86,6 +90,37 @@ public class ProfileActivity extends AppCompatActivity {
                 txtPhone.setText(value.getString("phone"));
                 txtName.setText(value.getString("name"));
                 txtEmail.setText(value.getString("email"));
+            }
+        });
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            txtName.setText(user.getDisplayName());
+            txtEmail.setText(user.getEmail());
+        }else {
+            txtName.setText("data tidak ada");
+            txtEmail.setText("data tidak ada");
+        }
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email1 = txtEmail.getText().toString().trim();
+                String fullName = txtName.getText().toString();
+                String phone = txtPhone.getText().toString();
+                userID = fAuth.getCurrentUser().getUid();
+                DocumentReference documentReference = fStore.collection("users").document(userID);
+                Map<String,Object> users = new HashMap<>();
+                users.put("name",fullName);
+                users.put("email",email1);
+                users.put("phone",phone);
+                documentReference.set(users).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("Input data", "onSuccess: user Profile is created for "+userID);
+                    }
+                });
+                Toast.makeText(getApplicationContext(), "Data Telah Disimpan", Toast.LENGTH_SHORT).show();
             }
         });
 
