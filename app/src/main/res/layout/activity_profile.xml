@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/editPhone"
                         android:layout_marginTop="20dp"
-                        android:text="Reset Passowrd :"
+                        android:text="Change Passowrd :"
                         android:textColor="@android:color/black"
                         android:textSize="17sp" />
 
@@ -121,9 +121,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/txtPassword"
-                        android:text="Reset"
-                        android:textSize="16sp"
-                        />
+                        android:text="Change"
+                        android:textSize="16sp" />
 
                     <Button
                         android:id="@+id/btnSave"

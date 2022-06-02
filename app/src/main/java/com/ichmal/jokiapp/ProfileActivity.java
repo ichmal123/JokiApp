@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private TextView txtName, txtEmail, txtPhone;
     private FirebaseUser user;
-    private Button btnReset,btnSave;
+    private Button btnChange,btnSave;
     private ImageView imgProfile;
     private StorageReference mStorageRef;
     private FirebaseAuth fAuth;
@@ -59,6 +62,7 @@ public class ProfileActivity extends AppCompatActivity {
         txtPhone = findViewById(R.id.editPhone);
         imgProfile = findViewById(R.id.picture);
         btnSave = findViewById(R.id.btnSave);
+        btnChange = findViewById(R.id.resetPassword);
 
         mStorageRef = FirebaseStorage.getInstance().getReference();
         fAuth = FirebaseAuth.getInstance();
@@ -93,7 +97,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
+        user = fAuth.getCurrentUser();
         if (user != null) {
             txtName.setText(user.getDisplayName());
             txtEmail.setText(user.getEmail());
@@ -121,6 +125,42 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
                 Toast.makeText(getApplicationContext(), "Data Telah Disimpan", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final EditText changePassword = new EditText(view.getContext());
+                final AlertDialog.Builder passwordChangeDialog = new AlertDialog.Builder(view.getContext());
+                passwordChangeDialog.setTitle("Change Passowrd");
+                passwordChangeDialog.setMessage("Enter new Password > 6 character long");
+                passwordChangeDialog.setView(changePassword);
+
+                passwordChangeDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String newPassword = changePassword.getText().toString();
+                        user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                Toast.makeText(getApplicationContext(), "Password Change Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getApplicationContext(), "Password Reset Failed.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+                passwordChangeDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Close
+                    }
+                });
+                passwordChangeDialog.create().show();
             }
         });
 
