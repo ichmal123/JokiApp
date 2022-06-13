@@ -46,12 +46,11 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText txtUsername, txtPassword;
-    private Button btnLogin, btnRegister;
+    private Button btnLogin, btnRegister, btnForget;
     FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
     private GoogleSignInClient mGoogleSignInClient;
     private ImageView google;
-    private LoginButton facebook;
     private CallbackManager mCallbackManager;
 
     @Override
@@ -65,19 +64,26 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Silahkan tunggu");
         progressDialog.setCancelable(false);
 
-//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-//
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
-//            getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        }
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            setWindowFlag(this, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, false);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }
 
         txtUsername = findViewById(R.id.email);
         txtPassword = findViewById(R.id.password);
         btnLogin = findViewById(R.id.masuk);
         btnRegister = findViewById(R.id.ke_daftar);
+        btnForget = findViewById(R.id.ke_lupa);
         google = findViewById(R.id.google);
-        facebook = findViewById(R.id.login_button);
+
+        btnForget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), ResetPassword.class));
+            }
+        });
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,29 +100,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
-            }
-        });
-
-        //Facebook
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
-        mCallbackManager = CallbackManager.Factory.create();
-        facebook.setReadPermissions("email", "public_profile");
-        facebook.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d("Facebook", "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d("Facebook", "facebook:onCancel");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d("Facebook", "facebook:onError", error);
             }
         });
 
@@ -168,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Akun Tidak ada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Email atau Password salah", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
             }
@@ -217,10 +200,6 @@ public class LoginActivity extends AppCompatActivity {
                 Log.w("Google Sign In", "Google SIGN Failed", e);
             }
         }
-        //Facebook
-        if (requestCode == 1002) {
-            mCallbackManager.onActivityResult(requestCode, resultCode, data);
-        }
     }
 
     private void firebaseAuthwithGoogle(String idToken) {
@@ -240,28 +219,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d("Facebook", "handleFacebookAccessToken:" + token);
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("Facebook", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            reload();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("Facebook", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            reload();
-                        }
-                    }
-                });
-    }
 
     @Override
     public void onStart() {

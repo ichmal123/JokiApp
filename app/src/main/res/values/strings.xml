@@ -1,17 +1,9 @@
 <resources>
     <string name="app_name">JokiApp</string>
     <string name="button_not_register">Tidak memiliki akun? <font color='red'>Daftar Sekarang</font></string>
+    <string name="button_forget_password"><font color='red'>Lupa Akun?</font></string>
     <string name="after_register">Sudah memiliki akun? <font color='red'>Login Sekarang</font></string>
     <string name="batal">Batal</string>
     <string name="keluar">Keluar</string>
     <string name="webClientId">1069003929606-u2bndkotdeltkq1kfjdgcagg19bhr8ai.apps.googleusercontent.com</string>
-
-
-    <string name="facebook_app_id">1355239854974502</string>
-    <string name="fb_login_protocol_scheme">fb1234</string>
-    <string name="facebook_client_token">e117a0dc7ed751f48096e9ba2e305748</string>
-
-
-
-
 </resources>

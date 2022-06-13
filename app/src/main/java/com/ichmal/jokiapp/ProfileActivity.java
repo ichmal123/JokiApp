@@ -131,36 +131,8 @@ public class ProfileActivity extends AppCompatActivity {
         btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final EditText changePassword = new EditText(view.getContext());
-                final AlertDialog.Builder passwordChangeDialog = new AlertDialog.Builder(view.getContext());
-                passwordChangeDialog.setTitle("Change Passowrd");
-                passwordChangeDialog.setMessage("Enter new Password > 6 character long");
-                passwordChangeDialog.setView(changePassword);
-
-                passwordChangeDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        String newPassword = changePassword.getText().toString();
-                        user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                Toast.makeText(getApplicationContext(), "Password Change Successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(getApplicationContext(), "Password Reset Failed.", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                });
-                passwordChangeDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        //Close
-                    }
-                });
-                passwordChangeDialog.create().show();
+                Intent chg = new Intent(getApplicationContext(), ChangePasswordActivity.class);
+                startActivity(chg);
             }
         });
 
