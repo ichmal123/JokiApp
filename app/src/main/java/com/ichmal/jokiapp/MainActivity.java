@@ -2,7 +2,9 @@ package com.ichmal.jokiapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -43,9 +45,30 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Mohon maaf, sistem sedang dalam pengembangan.", Toast.LENGTH_LONG).show();
     }
     public void jokiMlMenu(View v){
-        Toast.makeText(getApplicationContext(), "Mohon maaf, sistem sedang dalam pengembangan.", Toast.LENGTH_LONG).show();
+        Intent joki = new Intent(getApplicationContext(), JokiListActivity.class);
+        startActivity(joki);
     }
     public void comingSoon(View v){
         Toast.makeText(getApplicationContext(), "Coming Soon.", Toast.LENGTH_LONG).show();
+    }
+
+    public void onBackPressed() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Apakah Anda ingin keluar dari aplikasi?");
+        builder.setCancelable(true);
+        builder.setNegativeButton(getString(R.string.batal), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton(getString(R.string.keluar), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
