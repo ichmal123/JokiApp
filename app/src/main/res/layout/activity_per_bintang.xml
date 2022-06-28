@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbPerBintang"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/bg_home_wave"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tbPerBintang">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp"
+                app:strokeColor="@color/colorPrimary"
+                app:strokeWidth="2dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/profile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Isi Form Berikut"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TableLayout
+                        android:id="@+id/tblPerbintang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/profile">
+
+                        <TableRow>
+
+                            <TextView
+                                android:id="@+id/txtName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nama :"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/editName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Masukan Nama Anda"
+                                android:textSize="18sp" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:id="@+id/txtEmail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Email :"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/editEmail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Masukan Email Anda"
+                                android:inputType="textEmailAddress"
+                                android:textSize="18sp" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:id="@+id/txtPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Phone :"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/editPhone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Masukan Nomor Hp Anda"
+                                android:inputType="phone"
+                                android:textSize="18sp" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:id="@+id/txtId"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Id Akun:"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/editId"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Masukan Id Akun Anda"
+                                android:textSize="18sp" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:id="@+id/txtPass"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pass Akun:"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/editPass"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Masukan Password Akun Anda"
+                                android:inputType="textPassword"
+                                android:textSize="18sp" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:id="@+id/txtTier"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tier Akun:"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <Spinner
+                                android:id="@+id/spinTier"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"/>
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:id="@+id/txtJoki"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Order Bintang:"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/editBintang"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Masukan Jumlah Bintang"
+                                android:inputType="number"
+                                android:textSize="18sp" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView />
+
+                            <Button
+                                android:id="@+id/btnCekHarga"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tblPerbintang"
+                                android:layout_marginLeft="5dp"
+                                android:text="Cek Harga"
+                                android:textSize="16sp" />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <TextView
+                                android:id="@+id/txtHarga"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Harga:"
+                                android:textColor="@android:color/black"
+                                android:textSize="18sp" />
+
+                            <EditText
+                                android:id="@+id/editHarga"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:hint="Harga"
+                                android:textSize="18sp" />
+                        </TableRow>
+                    </TableLayout>
+
+                    <Button
+                        android:id="@+id/btnOrder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tblPerbintang"
+                        android:layout_centerHorizontal="true"
+                        android:text="Order"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

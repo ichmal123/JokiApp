@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(profile);
     }
     public void historyMenu(View v){
-        Toast.makeText(getApplicationContext(), "Mohon maaf, sistem sedang dalam pengembangan.", Toast.LENGTH_LONG).show();
+        startActivity(new Intent(getApplicationContext(), RiwayatActivity.class));
     }
     public void jokiMlMenu(View v){
         Intent joki = new Intent(getApplicationContext(), JokiListActivity.class);
