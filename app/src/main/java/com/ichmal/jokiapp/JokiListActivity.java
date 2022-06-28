@@ -3,6 +3,7 @@ package com.ichmal.jokiapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,22 +20,11 @@ public class JokiListActivity extends AppCompatActivity {
     }
 
     public void tierGrandmaster(View v){
-        Toast.makeText(getApplicationContext(), "Dalam Proses Pembuatan", Toast.LENGTH_SHORT).show();
+        Intent perBintang = new Intent(getApplicationContext(), PerBintangActivity.class);
+        startActivity(perBintang);
     }
 
     public void tierEpic(View v){
-        Toast.makeText(getApplicationContext(), "Dalam Proses Pembuatan", Toast.LENGTH_SHORT).show();
-    }
-
-    public void tierLegend(View v){
-        Toast.makeText(getApplicationContext(), "Dalam Proses Pembuatan", Toast.LENGTH_SHORT).show();
-    }
-
-    public void tierMythic(View v){
-        Toast.makeText(getApplicationContext(), "Dalam Proses Pembuatan", Toast.LENGTH_SHORT).show();
-    }
-
-    public void tierMythicGlory(View v){
         Toast.makeText(getApplicationContext(), "Dalam Proses Pembuatan", Toast.LENGTH_SHORT).show();
     }
 

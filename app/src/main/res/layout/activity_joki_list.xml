@@ -24,7 +24,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
@@ -36,13 +36,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/coming_soon" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -52,31 +47,23 @@
                         android:layout_marginBottom="5dp">
 
                         <TextView
-                            android:id="@+id/txtTierGm"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/txtPerBintang"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Tier Grandmaster"
-                            android:textSize="18sp"
+                            android:gravity="center"
+                            android:text="Order Joki PERBINTANG"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/ket1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/txtTierGm"
+                            android:layout_below="@+id/txtPerBintang"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:text="Menu Untuk Order Joki Sampai Grandmaster"
+                            android:text="Menu Untuk Order Joki Perbintang"
                             android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/ket1"
-                            android:layout_marginTop="40dp"
-                            android:text="Minimal Rank akun anda Warrior"
-                            android:textColor="@color/red"
-                            android:textSize="12sp" />
 
                     </RelativeLayout>
 
@@ -98,13 +85,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="150dp"
                     android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/coming_soon" />
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -115,10 +97,11 @@
 
                         <TextView
                             android:id="@+id/txtTierEpic"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Tier Epic"
-                            android:textSize="18sp"
+                            android:text="Order Joki PAKET"
+                            android:gravity="center"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -128,203 +111,8 @@
                             android:layout_below="@+id/txtTierEpic"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:text="Menu Untuk Order Joki Sampai Epic"
+                            android:text="Menu Untuk Order Joki PAKETAN"
                             android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/ket2"
-                            android:layout_marginTop="40dp"
-                            android:text="Minimal Rank akun anda Grandmaster"
-                            android:textColor="@color/red"
-                            android:textSize="12sp" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:onClick="tierLegend"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="3dp"
-                app:strokeColor="@color/colorPrimary"
-                app:strokeWidth="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/coming_soon" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="5dp">
-
-                        <TextView
-                            android:id="@+id/txtTierLegend"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tier Legend"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/ket3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/txtTierLegend"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
-                            android:text="Menu Untuk Order Joki Sampai Legend"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/ket3"
-                            android:layout_marginTop="40dp"
-                            android:text="Minimal Rank akun anda Grandmaster atau lebih tinggi"
-                            android:textColor="@color/red"
-                            android:textSize="12sp" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:onClick="tierMythic"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="3dp"
-                app:strokeColor="@color/colorPrimary"
-                app:strokeWidth="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/coming_soon" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="5dp">
-
-                        <TextView
-                            android:id="@+id/txtTierMythic"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tier Mythic"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/ket4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/txtTierMythic"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
-                            android:text="Menu Untuk Order Joki Sampai Mythic"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/ket4"
-                            android:layout_marginTop="40dp"
-                            android:text="Minimal Rank akun anda Epic atau lebih tinggi"
-                            android:textColor="@color/red"
-                            android:textSize="12sp" />
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:onClick="tierMythicGlory"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="3dp"
-                app:strokeColor="@color/colorPrimary"
-                app:strokeWidth="2dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/coming_soon" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="5dp">
-
-                        <TextView
-                            android:id="@+id/txtTierMythicGlory"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tier Mythic Glory"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/ket5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/txtTierMythicGlory"
-                            android:layout_centerHorizontal="true"
-                            android:layout_marginTop="5dp"
-                            android:text="Menu Untuk Order Joki Sampai Mythic Glory"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_below="@+id/ket5"
-                            android:layout_marginTop="40dp"
-                            android:text="Minimal Rank akun anda Legend atau lebih tinggi"
-                            android:textColor="@color/red"
-                            android:textSize="12sp" />
 
                     </RelativeLayout>
 
