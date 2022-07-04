@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JokiApp">
         <activity
+            android:name=".PerPaketActivity"
+            android:exported="true" />
+        <activity
             android:name=".RiwayatActivity"
             android:exported="true" />
         <activity

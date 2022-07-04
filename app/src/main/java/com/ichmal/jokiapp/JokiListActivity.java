@@ -25,7 +25,7 @@ public class JokiListActivity extends AppCompatActivity {
     }
 
     public void tierEpic(View v){
-        Toast.makeText(getApplicationContext(), "Dalam Proses Pembuatan", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), PerPaketActivity.class));
     }
 
     private void setupToolbar() {
