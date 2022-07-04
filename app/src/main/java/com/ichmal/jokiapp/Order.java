@@ -1,8 +1,8 @@
 package com.ichmal.jokiapp;
 
 public class Order {
-    private String nama, email, phone, idAkun, passAkun, tierAkun, status, tipeOrder;
-    private int orderBintang, harga;
+    private String nama, email, phone, idAkun, passAkun, tierAkun, status, tipeOrder, paket, role;
+    private int orderBintang, harga, total;
 
     public Order(){
 
@@ -86,5 +86,29 @@ public class Order {
 
     public void setTipeOrder(String tipeOrder) {
         this.tipeOrder = tipeOrder;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public String getPaket() {
+        return paket;
+    }
+
+    public void setPaket(String paket) {
+        this.paket = paket;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

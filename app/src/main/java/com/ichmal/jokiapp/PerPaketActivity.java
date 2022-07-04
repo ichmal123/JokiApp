@@ -1,12 +1,9 @@
 package com.ichmal.jokiapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,25 +13,19 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
+public class PerPaketActivity extends AppCompatActivity {
 
-public class PerBintangActivity extends AppCompatActivity {
-
-    private EditText editNama, editEmail, editNoHp, editIdAkun, editPassAkun, editOrderBintang, editHarga, editTotal;
-    private Button btnCekHarga, btnOrder;
-    private Spinner spinTier;
-    private String[] tier = {"Grandmaster", "Epic", "Legend"};
+    private EditText editNama, editEmail, editPhone, editIdAkun, editPass, editHarga, editTotal;
+    private Spinner spinPaket, spinRole;
+    private Button btnOrder, btnCekHarga;
+    private String[] paket = {"Grandmaster - Epic", "Grandmaster - Legend", "Grandmaster - Mythic V",
+            "Epic - Legend", "Epic - Mythic V", "Legend - Mythic IV", "Legend - Mythic Glory",
+            "Mythic V(Belum Grading) - Mythic IV", "Mythic V(Belum Grading) - Mythic Glory"};
+    private String[] role = {"Bebas", "Assassins", "Tank", "Marksman", "Support", "Mage", "Fighter"};
     private DatabaseReference reff, reff_admin;
     private Order order;
     private String UserID;
@@ -42,21 +33,23 @@ public class PerBintangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_per_bintang);
+        setContentView(R.layout.activity_per_paket);
 
         editNama = findViewById(R.id.editName);
         editEmail = findViewById(R.id.editEmail);
-        editNoHp = findViewById(R.id.editPhone);
+        editPhone = findViewById(R.id.editPhone);
         editIdAkun = findViewById(R.id.editId);
-        editPassAkun = findViewById(R.id.editPass);
-        spinTier = findViewById(R.id.spinTier);
-        ArrayAdapter aaSpinTier = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, tier);
-        spinTier.setAdapter(aaSpinTier);
-        editOrderBintang = findViewById(R.id.editBintang);
+        editPass = findViewById(R.id.editPass);
         editHarga = findViewById(R.id.editHarga);
         editTotal = findViewById(R.id.editTotal);
-        btnCekHarga = findViewById(R.id.btnCekHarga);
+        spinPaket = findViewById(R.id.spinTier);
+        ArrayAdapter aaSpinPaket = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, paket);
+        spinPaket.setAdapter(aaSpinPaket);
+        spinRole = findViewById(R.id.spinRole);
+        ArrayAdapter aaSpinRole = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, role);
+        spinRole.setAdapter(aaSpinRole);
         btnOrder = findViewById(R.id.btnOrder);
+        btnCekHarga = findViewById(R.id.btnCek);
 
         editTotal.setEnabled(false);
         editHarga.setEnabled(false);
@@ -66,20 +59,44 @@ public class PerBintangActivity extends AppCompatActivity {
         reff_admin = FirebaseDatabase.getInstance().getReference().child("Order_for_admin");
         order = new Order();
 
-        spinTier.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinPaket.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
                     case 0:
-                        editHarga.setText("4000");
+                        editHarga.setText("120000");
                         break;
 
                     case 1:
-                        editHarga.setText("6000");
+                        editHarga.setText("290000");
                         break;
 
                     case 2:
-                        editHarga.setText("8000");
+                        editHarga.setText("540000");
+                        break;
+
+                    case 3:
+                        editHarga.setText("170000");
+                        break;
+
+                    case 4:
+                        editHarga.setText("420000");
+                        break;
+
+                    case 5:
+                        editHarga.setText("500000");
+                        break;
+
+                    case 6:
+                        editHarga.setText("1500000");
+                        break;
+
+                    case 7:
+                        editHarga.setText("270000");
+                        break;
+
+                    case 8:
+                        editHarga.setText("1250000");
                         break;
                 }
             }
@@ -93,7 +110,7 @@ public class PerBintangActivity extends AppCompatActivity {
         btnCekHarga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cekTotal();
+                cekHarga();
             }
         });
 
@@ -102,11 +119,10 @@ public class PerBintangActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String nama = editNama.getText().toString();
                 String email = editEmail.getText().toString();
-                String phone = editNoHp.getText().toString();
+                String phone = editPhone.getText().toString();
                 String idAkun = editIdAkun.getText().toString();
-                String pass = editPassAkun.getText().toString();
+                String pass = editPass.getText().toString();
                 String total = editTotal.getText().toString();
-                String bintang = editOrderBintang.getText().toString();
                 if (nama.isEmpty()){
                     editNama.setError("Nama Tidak Boleh Kosong");
                 }
@@ -114,22 +130,19 @@ public class PerBintangActivity extends AppCompatActivity {
                     editEmail.setError("Email Tidak Boleh Kosong");
                 }
                 if (phone.isEmpty()){
-                    editNoHp.setError("No HP Tidak Boleh Kosong");
+                    editPhone.setError("No HP Tidak Boleh Kosong");
                 }
                 if (phone.length() > 14){
-                    editNoHp.setError("No Hp Tidak Valid");
+                    editPhone.setError("No Hp tidak Valid");
                 }
                 if (idAkun.isEmpty()){
                     editIdAkun.setError("Id Akun Tidak Boleh Kosong");
                 }
                 if (pass.isEmpty()){
-                    editPassAkun.setError("Password Akun Tidak Boleh Kosong");
+                    editPass.setError("Password Akun Tidak Boleh Kosong");
                 }
                 if (pass.length() < 8){
-                    editPassAkun.setError("Password Akun Harus Lebih dari 7 Karakter dan Angka");
-                }
-                if (bintang.isEmpty()){
-                    editOrderBintang.setError("Order Bintang Tidak Boleh Kosong");
+                    editPass.setError("Password Akun Harus Lebih dari 7 Karakter dan Angka");
                 }
                 if (total.isEmpty()){
                     Toast.makeText(getApplicationContext(), "Total Tidak Boleh Kosong", Toast.LENGTH_LONG).show();
@@ -141,62 +154,76 @@ public class PerBintangActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Cek Kembali Form", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
+
         setupToolbar();
+
     }
 
-    private  void prosesOrder(){
-        int orderBintang = Integer.parseInt(editOrderBintang.getText().toString());
+    private void prosesOrder(){
         int harga = Integer.parseInt(editHarga.getText().toString());
         int total = Integer.parseInt(editTotal.getText().toString());
         order.setNama(editNama.getText().toString());
         order.setEmail(editEmail.getText().toString().trim());
-        order.setPhone(editNoHp.getText().toString());
+        order.setPhone(editPhone.getText().toString());
         order.setIdAkun(editIdAkun.getText().toString());
-        order.setPassAkun(editPassAkun.getText().toString());
-        order.setTierAkun(spinTier.getSelectedItem().toString());
+        order.setPassAkun(editPass.getText().toString());
+        order.setTierAkun(spinPaket.getSelectedItem().toString());
         order.setHarga(harga);
-        order.setOrderBintang(orderBintang);
+        order.setRole(spinRole.getSelectedItem().toString());
         order.setTotal(total);
         order.setStatus("Belum Selesai");
-        order.setTipeOrder("Perbintang");
+        order.setTipeOrder("Paketan");
         reff.push().setValue(order);
         reff_admin.push().setValue(order);
     }
+
+    private void cekHarga(){
+        String requestRole = spinRole.getSelectedItem().toString();
+        int harga = Integer.parseInt(editHarga.getText().toString());
+        int total;
+
+        if (requestRole.equals("Bebas")){
+            total = harga;
+            editTotal.setText(String.valueOf(total));
+        } else if (requestRole.equals("Assassins")){
+            total = harga + 30000;
+            editTotal.setText(String.valueOf(total));
+        } else if (requestRole.equals("Tank")){
+            total = harga + 50000;
+            editTotal.setText(String.valueOf(total));
+        } else if (requestRole.equals("Marksman")){
+            total = harga + 30000;
+            editTotal.setText(String.valueOf(total));
+        } else if (requestRole.equals("Support")){
+            total = harga + 50000;
+            editTotal.setText(String.valueOf(total));
+        } else if (requestRole.equals("Mage")){
+            total = harga + 40000;
+            editTotal.setText(String.valueOf(total));
+        } else if (requestRole.equals("Fighter")){
+            total = harga + 30000;
+            editTotal.setText(String.valueOf(total));
+        }
+    }
+
     private void empty(){
         editNama.setText("");
         editEmail.setText("");
-        editNoHp.setText("");
+        editPhone.setText("");
         editIdAkun.setText("");
-        editPassAkun.setText("");
-        editOrderBintang.setText("");
+        editPass.setText("");
         editHarga.setText("");
+        editTotal.setText("");
 
         editNama.requestFocus();
     }
 
-    private void cekTotal(){
-        String tierAkun = spinTier.getSelectedItem().toString();
-        int orderBintang = Integer.parseInt(editOrderBintang.getText().toString());
-        int harga;
-        if (tierAkun.equals("Grandmaster")){
-            harga = orderBintang * 4000;
-            editTotal.setText(String.valueOf(harga));
-        } else if (tierAkun.equals("Epic")){
-            harga = orderBintang * 6000;
-            editTotal.setText(String.valueOf(harga));
-        } else if (tierAkun.equals("Legend")){
-            harga = orderBintang * 8000;
-            editTotal.setText(String.valueOf(harga));
-        }
-    }
-
     private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.tbPerBintang);
-        toolbar.setTitle("Menu Order Joki Perbintang");
+        Toolbar toolbar = findViewById(R.id.tbPerPaket);
+        toolbar.setTitle("Menu Order Joki Paketan");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -209,4 +236,5 @@ public class PerBintangActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

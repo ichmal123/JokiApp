@@ -6,7 +6,7 @@
     android:background="@color/gray">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tbPerBintang"
+        android:id="@+id/tbPerPaket"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@drawable/bg_home_wave"
@@ -15,7 +15,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tbPerBintang">
+        android:layout_below="@+id/tbPerPaket">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -156,7 +156,7 @@
                                 android:id="@+id/txtTier"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Tier Akun:"
+                                android:text="Paket :"
                                 android:textColor="@android:color/black"
                                 android:textSize="18sp" />
 
@@ -190,21 +190,18 @@
                         <TableRow>
 
                             <TextView
-                                android:id="@+id/txtJoki"
+                                android:id="@+id/txtRole"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Order Bintang:"
+                                android:text="Role Hero :"
                                 android:textColor="@android:color/black"
                                 android:textSize="18sp" />
 
-                            <EditText
-                                android:id="@+id/editBintang"
+                            <Spinner
+                                android:id="@+id/spinRole"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:hint="Masukan Jumlah Bintang"
-                                android:inputType="number"
-                                android:textSize="18sp" />
+                                android:layout_marginLeft="5dp"/>
                         </TableRow>
 
                         <TableRow>
@@ -212,13 +209,13 @@
                             <TextView />
 
                             <Button
-                                android:id="@+id/btnCekHarga"
+                                android:id="@+id/btnCek"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@id/tblPerbintang"
-                                android:layout_marginLeft="5dp"
+                                android:layout_centerHorizontal="true"
                                 android:text="Cek Total"
-                                android:textSize="16sp" />
+                                android:layout_marginLeft="5dp"
+                                android:textSize="14sp"/>
                         </TableRow>
 
                         <TableRow>
