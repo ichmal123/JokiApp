@@ -141,6 +141,30 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Tanggal Order :"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dummy"
+                android:layout_marginStart="20dp"
+                android:textStyle="bold"
+                android:id="@+id/tanggal_text"
+                android:textSize="17sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Status :"
                 android:textStyle="bold"
                 android:padding="5dp"
