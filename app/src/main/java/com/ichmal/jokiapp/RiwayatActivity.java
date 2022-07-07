@@ -23,7 +23,7 @@ public class RiwayatActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private String UserID = FirebaseAuth.getInstance().getUid();
-    private DatabaseReference root = db.getReference().child("Orders").child(UserID);
+    private DatabaseReference root = db.getReference().child("Orders");
     private RiwayatAdapter riwayatAdapter;
     private ArrayList<Order> list;
 
@@ -46,7 +46,9 @@ public class RiwayatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Order order = dataSnapshot.getValue(Order.class);
-                    list.add(order);
+                    if (order.getUserID() == UserID){
+                        list.add(order);
+                    }
                 }
                 riwayatAdapter.notifyDataSetChanged();
             }

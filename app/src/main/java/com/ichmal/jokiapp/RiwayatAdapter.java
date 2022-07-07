@@ -36,6 +36,7 @@ public class RiwayatAdapter extends RecyclerView.Adapter<RiwayatAdapter.MyViewHo
         holder.phone.setText(order.getPhone());
         holder.tier.setText(order.getTierAkun());
         holder.tipe.setText(order.getTipeOrder());
+        holder.tanggal.setText(order.getTanggal());
         holder.status.setText(order.getStatus());
     }
 
@@ -46,7 +47,7 @@ public class RiwayatAdapter extends RecyclerView.Adapter<RiwayatAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView name, email, phone, tier, status, tipe;
+        TextView name, email, phone, tier, status, tipe, tanggal;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +57,7 @@ public class RiwayatAdapter extends RecyclerView.Adapter<RiwayatAdapter.MyViewHo
             phone = itemView.findViewById(R.id.phone_text);
             tier = itemView.findViewById(R.id.tier_text);
             tipe = itemView.findViewById(R.id.order_text);
+            tanggal = itemView.findViewById(R.id.tanggal_text);
             status = itemView.findViewById(R.id.status_text);
 
         }

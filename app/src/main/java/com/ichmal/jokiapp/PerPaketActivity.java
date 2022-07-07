@@ -14,8 +14,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class PerPaketActivity extends AppCompatActivity {
 
@@ -28,7 +34,11 @@ public class PerPaketActivity extends AppCompatActivity {
     private String[] role = {"Bebas", "Assassins", "Tank", "Marksman", "Support", "Mage", "Fighter"};
     private DatabaseReference reff, reff_admin;
     private Order order;
-    private String UserID;
+    private String UserID, usernameAccount;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private Date date = Calendar.getInstance().getTime();
+    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+    private String formatDate = df.format(date);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +65,8 @@ public class PerPaketActivity extends AppCompatActivity {
         editHarga.setEnabled(false);
 
         UserID = FirebaseAuth.getInstance().getUid();
-        reff = FirebaseDatabase.getInstance().getReference().child("Orders").child(UserID);
-        reff_admin = FirebaseDatabase.getInstance().getReference().child("Order_for_admin");
+        usernameAccount = user.getEmail();
+        reff = FirebaseDatabase.getInstance().getReference().child("Orders");
         order = new Order();
 
         spinPaket.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -165,6 +175,7 @@ public class PerPaketActivity extends AppCompatActivity {
     private void prosesOrder(){
         int harga = Integer.parseInt(editHarga.getText().toString());
         int total = Integer.parseInt(editTotal.getText().toString());
+        order.setUsername(usernameAccount);
         order.setNama(editNama.getText().toString());
         order.setEmail(editEmail.getText().toString().trim());
         order.setPhone(editPhone.getText().toString());
@@ -174,10 +185,11 @@ public class PerPaketActivity extends AppCompatActivity {
         order.setHarga(harga);
         order.setRole(spinRole.getSelectedItem().toString());
         order.setTotal(total);
+        order.setTanggal(formatDate);
         order.setStatus("Belum Selesai");
         order.setTipeOrder("Paketan");
+        order.setUserID(UserID);
         reff.push().setValue(order);
-        reff_admin.push().setValue(order);
     }
 
     private void cekHarga(){

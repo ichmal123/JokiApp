@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText txtUsername, txtPassword;
     private Button btnLogin, btnRegister, btnForget;
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private ProgressDialog progressDialog;
     private GoogleSignInClient mGoogleSignInClient;
     private ImageView google;

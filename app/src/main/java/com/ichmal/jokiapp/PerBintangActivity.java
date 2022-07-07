@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,7 +27,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class PerBintangActivity extends AppCompatActivity {
@@ -37,7 +42,11 @@ public class PerBintangActivity extends AppCompatActivity {
     private String[] tier = {"Grandmaster", "Epic", "Legend"};
     private DatabaseReference reff, reff_admin;
     private Order order;
-    private String UserID;
+    private String UserID, username;
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private Date date = Calendar.getInstance().getTime();
+    SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+    private String formatDate = df.format(date);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +71,8 @@ public class PerBintangActivity extends AppCompatActivity {
         editHarga.setEnabled(false);
 
         UserID = FirebaseAuth.getInstance().getUid();
-        reff = FirebaseDatabase.getInstance().getReference().child("Orders").child(UserID);
-        reff_admin = FirebaseDatabase.getInstance().getReference().child("Order_for_admin");
+        username = user.getEmail();
+        reff = FirebaseDatabase.getInstance().getReference().child("Orders");
         order = new Order();
 
         spinTier.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -152,6 +161,7 @@ public class PerBintangActivity extends AppCompatActivity {
         int orderBintang = Integer.parseInt(editOrderBintang.getText().toString());
         int harga = Integer.parseInt(editHarga.getText().toString());
         int total = Integer.parseInt(editTotal.getText().toString());
+        order.setUsername(username);
         order.setNama(editNama.getText().toString());
         order.setEmail(editEmail.getText().toString().trim());
         order.setPhone(editNoHp.getText().toString());
@@ -163,8 +173,9 @@ public class PerBintangActivity extends AppCompatActivity {
         order.setTotal(total);
         order.setStatus("Belum Selesai");
         order.setTipeOrder("Perbintang");
+        order.setTanggal(formatDate);
+        order.setUserID(UserID);
         reff.push().setValue(order);
-        reff_admin.push().setValue(order);
     }
     private void empty(){
         editNama.setText("");
@@ -174,6 +185,7 @@ public class PerBintangActivity extends AppCompatActivity {
         editPassAkun.setText("");
         editOrderBintang.setText("");
         editHarga.setText("");
+        editTotal.setText("");
 
         editNama.requestFocus();
     }
